@@ -38,6 +38,7 @@ bees-knees-website/
 │   └── main.js     Opens/closes the "Menu" button on phones
 ├── images/         Photos go here (see images/README.txt)
 │   └── decor/      Design graphics: honeycomb.svg (background texture), gear.svg (divider)
+├── .nojekyll       Empty file that tells GitHub Pages "plain HTML, no conversion needed". Don't delete it.
 └── README.md       This guide
 ```
 
