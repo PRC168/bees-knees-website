@@ -1,0 +1,768 @@
+/* ==========================================================================
+   The Bees Knees — FTC #13645
+   Shared stylesheet used by EVERY page on the site.
+
+   This file is organized top to bottom:
+     1.  Colors & settings (CSS variables)  <- change colors here
+     2.  Base styles (text, links, headings)
+     3.  Layout helpers (containers, sections, grids)
+     4.  Header & navigation (including the phone menu)
+     5.  Hero (home page) & page headers (other pages)
+     6.  Cards & buttons
+     7.  Team cards
+     8.  Build log
+     9.  Photo placeholders
+     10. Footer
+     11. Wider screens (tablet & desktop)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. COLORS & SETTINGS
+   A "CSS variable" is a named value. Instead of typing #f2a900 in 20 places,
+   we write var(--color-gold). Change it once here and the whole site updates.
+   ========================================================================== */
+
+/* TODO: These colors are temporary. Update them to the official team colors
+   once the team decides on them. Keep the contrast rule below in mind. */
+:root {
+  /* Dark colors (header, hero, footer) */
+  --color-charcoal: #1c1c1e;
+  --color-charcoal-light: #2c2c2f;
+
+  /* Gold accents.
+     IMPORTANT: bright gold is hard to read on white. Use --color-gold only on
+     dark backgrounds or for decoration (borders, shapes). For text or links on
+     light backgrounds, use --color-gold-dark instead. */
+  --color-gold: #f2a900;
+  --color-gold-hover: #ffbe2e;
+  --color-gold-dark: #8a5a00;
+
+  /* Light colors (page background, cards) */
+  --color-bg: #faf8f3;            /* warm off-white page background */
+  --color-surface: #ffffff;       /* cards */
+  --color-surface-muted: #f3f0e8; /* photo placeholders */
+  --color-border: #e4e0d6;
+
+  /* Text colors */
+  --color-text: #222222;
+  --color-text-muted: #5a5a5a;
+  --color-text-on-dark: #f5f5f5;
+  --color-text-on-dark-muted: #c8c8c8;
+
+  /* Fonts: these are fonts already installed on every phone/computer,
+     so nothing has to download and pages load fast. */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Sizes */
+  --max-width: 1100px;  /* widest the content gets on big screens */
+  --radius: 8px;        /* how rounded corners are */
+}
+
+
+/* ==========================================================================
+   2. BASE STYLES
+   ========================================================================== */
+
+/* Makes width/height math include padding and borders (much easier to reason about). */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* about 17px */
+  line-height: 1.65;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+img {
+  max-width: 100%;  /* images never overflow their box */
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+  color: var(--color-charcoal);
+  letter-spacing: -0.01em;
+}
+
+/* clamp(smallest, preferred, largest) = text grows with the screen, within limits */
+h1 { font-size: clamp(2rem, 6vw, 3.25rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+h3 { font-size: 1.2rem; }
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--color-gold-dark);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--color-charcoal);
+}
+
+/* Visible outline when someone moves through the page with the Tab key. */
+:focus-visible {
+  outline: 3px solid var(--color-gold-dark);
+  outline-offset: 3px;
+}
+
+/* On dark areas, use the bright gold outline instead so it stays visible. */
+.site-header :focus-visible,
+.hero :focus-visible,
+.page-header :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--color-gold);
+}
+
+/* "Skip to main content" link: hidden until a keyboard user presses Tab. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+  font-weight: 700;
+  border-radius: var(--radius);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Placeholder text (things we still need to fill in). Search the site for "TODO". */
+.placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Turn off animations for people who ask their device for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   3. LAYOUT HELPERS
+   ========================================================================== */
+
+/* Centers content and keeps a 16px gap from the screen edges on phones. */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+/* Alternate background for every other section, to separate content visually. */
+.section-alt {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Section headings get a small gold hexagon in front of them. */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section-title::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.75em;
+  height: 0.75em;
+  background: var(--color-gold);
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+}
+
+.section-intro {
+  max-width: 65ch;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Keeps long paragraphs at a comfortable reading width. */
+.prose {
+  max-width: 70ch;
+}
+
+.lead {
+  font-size: 1.2rem;
+}
+
+/* A responsive grid: cards sit side by side when there is room,
+   and stack into one column on phones. No media query needed. */
+.card-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+/* Wider cards: at most 2 per row (used for the 4 robot subsystems, so they form a 2 x 2 grid). */
+.card-grid-wide {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+}
+
+/* A simple two-part list of facts (label + value). */
+.fact-list {
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.fact-list dt {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.fact-list dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   4. HEADER & NAVIGATION
+   ========================================================================== */
+
+.site-header {
+  position: sticky;  /* header stays at the top while scrolling */
+  top: 0;
+  z-index: 50;
+  background: var(--color-charcoal);
+  color: var(--color-text-on-dark);
+  border-bottom: 3px solid var(--color-gold);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Text wordmark (used until the team has a logo). */
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-decoration: none;
+  color: var(--color-text-on-dark);
+}
+
+.wordmark:hover {
+  color: #ffffff;
+}
+
+.wordmark-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.wordmark-number {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* --- Phone menu button ---
+   The button is hidden unless JavaScript is running (the "js" class is added
+   to the page by a one-line script in each page's <head>). That way, if
+   JavaScript ever fails, the links simply show instead of being stuck hidden. */
+.menu-toggle {
+  display: none;
+}
+
+.js .menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  background: transparent;
+  color: var(--color-text-on-dark);
+  border: 1px solid #8a8a8a;
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.js .menu-toggle:hover {
+  border-color: var(--color-gold);
+}
+
+/* The three-line "hamburger" icon, drawn with CSS. */
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+}
+
+.menu-icon {
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-icon::before { top: -6px; }
+.menu-icon::after  { top: 6px; }
+
+/* --- Navigation links (phone layout first) --- */
+.site-nav {
+  width: 100%;
+}
+
+/* On phones, the menu starts closed... */
+.js .site-nav {
+  display: none;
+}
+
+/* ...and opens when main.js adds the "is-open" class. */
+.js .site-nav.is-open {
+  display: block;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.75rem 0.25rem;
+  border-top: 1px solid #3a3a3d;
+  color: var(--color-text-on-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--color-gold);
+}
+
+
+/* ==========================================================================
+   5. HERO (home page) & PAGE HEADERS (all other pages)
+   ========================================================================== */
+
+/* Dark band with a very faint honeycomb pattern.
+   The pattern is a tiny drawing (SVG) written directly into the CSS, so there
+   is no image file to load. To make it stronger or weaker, change both
+   stroke-opacity='0.07' values (0 = invisible, 1 = solid). */
+.hero,
+.page-header {
+  background-color: var(--color-charcoal);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23f2a900' stroke-opacity='0.07'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23f2a900' stroke-opacity='0.07'/%3E%3C/svg%3E");
+  color: var(--color-text-on-dark);
+}
+
+.hero {
+  padding: 4rem 0 4.5rem;
+}
+
+.hero h1,
+.page-header h1 {
+  color: #ffffff;
+}
+
+.hero h1 {
+  margin-bottom: 0.25rem;
+}
+
+.hero-season {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--color-gold);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.hero-number {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.hero-school {
+  color: var(--color-text-on-dark-muted);
+}
+
+.hero-tagline {
+  max-width: 34ch;
+  margin: 1.75rem 0 2rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--color-gold);
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Smaller dark band at the top of every page except Home. */
+.page-header {
+  padding: 2.75rem 0;
+}
+
+.page-header p {
+  max-width: 60ch;
+  margin-bottom: 0;
+  color: var(--color-text-on-dark-muted);
+  font-size: 1.1rem;
+}
+
+
+/* ==========================================================================
+   6. CARDS & BUTTONS
+   ========================================================================== */
+
+.card {
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-gold);
+  border-radius: var(--radius);
+}
+
+.card h3 {
+  margin-bottom: 0.4rem;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+/* A whole card that works as one link (used on the Home page). */
+.link-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.link-card:hover {
+  color: inherit;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card-cta {
+  font-weight: 700;
+  color: var(--color-gold-dark);
+}
+
+/* Small uppercase label above a card heading. */
+.label {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+  border: 2px solid var(--color-gold);
+  border-radius: var(--radius);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--color-gold-hover);
+  border-color: var(--color-gold-hover);
+  color: var(--color-charcoal);
+}
+
+/* Outline version: only use on dark backgrounds. */
+.button-outline {
+  background: transparent;
+  color: #ffffff;
+}
+
+.button-outline:hover {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+
+/* ==========================================================================
+   7. TEAM CARDS
+   ========================================================================== */
+
+.person-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Circle with initials. Later this can be swapped for a photo
+   (an <img> with class="avatar" gets the same round shape). */
+.avatar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  background: var(--color-charcoal);
+  color: var(--color-gold);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  object-fit: cover; /* used when the avatar is a photo */
+}
+
+.avatar-large {
+  width: 84px;
+  height: 84px;
+  font-size: 1.6rem;
+}
+
+/* Dashed circle for placeholder cards that still need a real member. */
+.avatar-placeholder {
+  background: var(--color-surface-muted);
+  border-style: dashed;
+  border-color: #a39b88;
+  color: var(--color-text-muted);
+}
+
+.person-name {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.person-role {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+
+/* ==========================================================================
+   8. BUILD LOG
+   ========================================================================== */
+
+.log {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 760px;
+}
+
+.log-entry {
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-gold);
+  border-radius: var(--radius);
+}
+
+.log-date {
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.log-entry h2 {
+  font-size: 1.35rem;
+}
+
+.log-entry p:last-child {
+  margin-bottom: 0;
+}
+
+.log-entry figure {
+  margin: 1.25rem 0 0;
+}
+
+.log-entry img {
+  border-radius: var(--radius);
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+
+/* ==========================================================================
+   9. PHOTO PLACEHOLDERS
+   Dashed boxes showing where a photo will go. When you have the photo,
+   replace the whole <div class="photo-placeholder">...</div> with an <img>.
+   ========================================================================== */
+
+.photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;  /* keeps a widescreen shape at any width */
+  margin-top: 1.25rem;
+  padding: 1rem;
+  background: var(--color-surface-muted);
+  border: 2px dashed #b9b2a2;
+  border-radius: var(--radius);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   10. FOOTER
+   ========================================================================== */
+
+.site-footer {
+  padding: 2.5rem 0 2rem;
+  background: var(--color-charcoal);
+  border-top: 3px solid var(--color-gold);
+  color: var(--color-text-on-dark-muted);
+  font-size: 0.95rem;
+}
+
+.site-footer p {
+  margin-bottom: 0.4rem;
+}
+
+.site-footer a {
+  color: var(--color-gold);
+}
+
+.site-footer a:hover {
+  color: #ffffff;
+}
+
+.site-footer .placeholder {
+  color: var(--color-text-on-dark-muted);
+}
+
+.footer-name {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.copyright {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #3a3a3d;
+  font-size: 0.85rem;
+}
+
+
+/* ==========================================================================
+   11. WIDER SCREENS (tablet & desktop, 768px and up)
+   Everything above is designed for phones first. These rules adjust the
+   layout once the screen is wide enough.
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  /* Hide the Menu button and always show the links in a row. */
+  .js .menu-toggle {
+    display: none;
+  }
+
+  .site-nav,
+  .js .site-nav {
+    display: block;
+    width: auto;
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0;
+  }
+
+  .site-nav a {
+    padding: 0.5rem 0.7rem;
+    border-top: 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav a[aria-current="page"] {
+    border-bottom-color: var(--color-gold);
+  }
+
+  .hero {
+    padding: 6rem 0 6.5rem;
+  }
+
+  .page-header {
+    padding: 4rem 0;
+  }
+
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  /* Two columns: main text on the left, facts box on the right. */
+  .split {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}

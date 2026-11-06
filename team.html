@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team · The Bees Knees · FTC Team #13645</title>
+  <meta name="description" content="Meet the captains, members, and mentors of The Bees Knees, FTC Team #13645 at BSGE.">
+  <meta name="theme-color" content="#1c1c1e">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- This line tells the CSS that JavaScript is working, so the phone menu can start closed. -->
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===== HEADER (same on every page) ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- TODO: Replace this text wordmark with the team logo once it exists. Save it in images/ and use an <img> with alt="The Bees Knees, FTC Team 13645". -->
+      <a class="wordmark" href="index.html">
+        <span class="wordmark-name">The Bees Knees</span>
+        <span class="wordmark-number">FTC #13645</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html" aria-current="page">Team</a></li>
+          <li><a href="robot.html">Robot</a></li>
+          <li><a href="buildlog.html">Build Log</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-header">
+      <div class="container">
+        <h1>Our Team</h1>
+        <p>The students and mentors behind The Bees Knees.</p>
+      </div>
+    </section>
+
+    <!-- ===== CAPTAINS ===== -->
+    <section class="section" aria-labelledby="captains-title">
+      <div class="container">
+        <h2 id="captains-title" class="section-title">Captains</h2>
+        <div class="card-grid">
+          <article class="card person-card">
+            <div class="avatar avatar-large" aria-hidden="true">PC</div>
+            <div>
+              <span class="label">Co-Captain</span>
+              <h3 class="person-name">Prodip Chowdhury</h3>
+              <p class="person-role">Programming Lead</p>
+            </div>
+          </article>
+
+          <article class="card person-card">
+            <div class="avatar avatar-large" aria-hidden="true">GV</div>
+            <div>
+              <span class="label">Co-Captain</span>
+              <h3 class="person-name">Gabriel Velasquez</h3>
+              <!-- TODO: Add Gabriel's role or subteam. -->
+              <p class="person-role placeholder">[Role / subteam coming soon]</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MEMBERS ===== -->
+    <section class="section section-alt" aria-labelledby="members-title">
+      <div class="container">
+        <h2 id="members-title" class="section-title">Members</h2>
+
+        <!--
+          HOW TO ADD A TEAM MEMBER
+          1. Copy one whole member card: everything from <article class="card person-card">
+             down to its matching </article>.
+          2. Paste it after the last card, still INSIDE <div class="card-grid"> (before its closing </div>).
+          3. Change the initials, name, and role. Remove "avatar-placeholder" and "placeholder"
+             from the class names so the card shows in the normal (non-placeholder) style.
+          4. Delete the "TODO" comment above any placeholder card you replaced.
+
+          A finished card looks like this (example name only):
+
+          <article class="card person-card">
+            <div class="avatar" aria-hidden="true">JD</div>
+            <div>
+              <h3 class="person-name">Jordan Doe</h3>
+              <p class="person-role">Build Team</p>
+            </div>
+          </article>
+
+          ADDING A PHOTO LATER: replace the line <div class="avatar" ...>JD</div> with
+            <img class="avatar" src="images/team/jordan-doe.jpg" alt="Jordan Doe">
+          (Use a square photo. The CSS will crop it into a circle.)
+        -->
+
+        <div class="card-grid">
+          <!-- TODO: Replace with a real team member (initials, name, role), or delete this card. -->
+          <article class="card person-card">
+            <div class="avatar avatar-placeholder" aria-hidden="true">?</div>
+            <div>
+              <h3 class="person-name placeholder">[Member name]</h3>
+              <p class="person-role placeholder">[Role / subteam]</p>
+            </div>
+          </article>
+
+          <!-- TODO: Replace with a real team member (initials, name, role), or delete this card. -->
+          <article class="card person-card">
+            <div class="avatar avatar-placeholder" aria-hidden="true">?</div>
+            <div>
+              <h3 class="person-name placeholder">[Member name]</h3>
+              <p class="person-role placeholder">[Role / subteam]</p>
+            </div>
+          </article>
+
+          <!-- TODO: Replace with a real team member (initials, name, role), or delete this card. -->
+          <article class="card person-card">
+            <div class="avatar avatar-placeholder" aria-hidden="true">?</div>
+            <div>
+              <h3 class="person-name placeholder">[Member name]</h3>
+              <p class="person-role placeholder">[Role / subteam]</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COACHES & MENTORS ===== -->
+    <section class="section" aria-labelledby="mentors-title">
+      <div class="container">
+        <h2 id="mentors-title" class="section-title">Coaches &amp; mentors</h2>
+        <div class="card-grid">
+          <!-- TODO: Add the team's coach and any mentors (name + role, e.g. "Faculty Coach"). Copy this card for each person. -->
+          <article class="card person-card">
+            <div class="avatar avatar-placeholder" aria-hidden="true">?</div>
+            <div>
+              <h3 class="person-name placeholder">[Coach / mentor name]</h3>
+              <p class="person-role placeholder">[Role, e.g. Faculty Coach]</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER (same on every page) ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-name">The Bees Knees · FTC Team #13645</p>
+      <p>Baccalaureate School for Global Education (BSGE) · Astoria, Queens, New York</p>
+      <!-- TODO: Replace with the real Instagram link, e.g. <a href="https://www.instagram.com/yourhandle/">Instagram: @yourhandle</a> -->
+      <p class="placeholder">Instagram: [handle coming soon]</p>
+      <p class="copyright">© 2026 The Bees Knees, FTC Team #13645. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

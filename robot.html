@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robot · The Bees Knees · FTC Team #13645</title>
+  <meta name="description" content="The Bees Knees' 2026–27 season strategy, engineering tools, and robot subsystems.">
+  <meta name="theme-color" content="#1c1c1e">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- This line tells the CSS that JavaScript is working, so the phone menu can start closed. -->
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===== HEADER (same on every page) ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- TODO: Replace this text wordmark with the team logo once it exists. Save it in images/ and use an <img> with alt="The Bees Knees, FTC Team 13645". -->
+      <a class="wordmark" href="index.html">
+        <span class="wordmark-name">The Bees Knees</span>
+        <span class="wordmark-number">FTC #13645</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="robot.html" aria-current="page">Robot</a></li>
+          <li><a href="buildlog.html">Build Log</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-header">
+      <div class="container">
+        <h1>Robot &amp; Engineering</h1>
+        <!-- TODO: Verify the official spelling of the season name. -->
+        <p>Our strategy and engineering approach for the 2026–27 <em>FIRST</em> Tech Challenge season, BIOBUZZ.</p>
+      </div>
+    </section>
+
+    <!-- ===== SEASON STRATEGY ===== -->
+    <section class="section" aria-labelledby="strategy-title">
+      <div class="container">
+        <h2 id="strategy-title" class="section-title">Season strategy</h2>
+        <!-- TODO: Confirm "hive" is the official game-manual term for the scoring area and update the wording if needed. -->
+        <div class="prose">
+          <p class="lead">Our design is built around the intake.</p>
+          <p>Every point we score depends on how quickly and reliably we can collect game elements. A robot that can control game elements consistently has more opportunities to score in the hive in every match, in both the autonomous and driver-controlled periods. That makes the intake our highest-priority subsystem this season.</p>
+          <p>In practice, this means we prototype and test intake concepts first, and design the drivetrain and scoring mechanism to support the intake rather than the other way around. We evaluate each design against clear criteria (speed, reliability, and tolerance for imperfect driving) and record the results in our <a href="buildlog.html">build log</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TOOLS ===== -->
+    <section class="section section-alt" aria-labelledby="tools-title">
+      <div class="container">
+        <h2 id="tools-title" class="section-title">Engineering tools</h2>
+        <p class="section-intro">The software we use to design, program, and control our robot.</p>
+        <div class="card-grid">
+          <div class="card">
+            <span class="label">CAD</span>
+            <h3>Onshape</h3>
+            <p>A browser-based CAD platform we use to design parts and assemblies, check fit and clearances, and collaborate on the same model in real time.</p>
+          </div>
+          <div class="card">
+            <span class="label">Programming</span>
+            <h3>Java &amp; the FTC SDK</h3>
+            <p>Our robot code is written in Java using the official FTC SDK, which provides the framework for controlling motors, servos, and sensors.</p>
+          </div>
+          <div class="card">
+            <span class="label">Autonomous</span>
+            <h3>Road Runner</h3>
+            <p>A motion-planning library we use to generate and follow smooth, accurate paths during the autonomous period.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SUBSYSTEMS ===== -->
+    <section class="section" aria-labelledby="subsystems-title">
+      <div class="container">
+        <h2 id="subsystems-title" class="section-title">Robot subsystems</h2>
+        <p class="section-intro">Detailed write-ups for each subsystem will be added as our designs are finalized.</p>
+
+        <div class="card-grid card-grid-wide">
+          <!-- TODO: Drivetrain: describe the design, why we chose it, and what we tested. Replace the photo placeholder with a photo or CAD render. -->
+          <article class="card">
+            <h3>Drivetrain</h3>
+            <p class="placeholder">[Drivetrain details coming soon.]</p>
+            <div class="photo-placeholder">Drivetrain photo or CAD render coming soon</div>
+          </article>
+
+          <!-- TODO: Intake: describe the design, iterations, and test results. Replace the photo placeholder with a photo or CAD render. -->
+          <article class="card">
+            <h3>Intake</h3>
+            <p class="placeholder">[Intake details coming soon.]</p>
+            <div class="photo-placeholder">Intake photo or CAD render coming soon</div>
+          </article>
+
+          <!-- TODO: Scoring mechanism: describe how the robot scores and why. Replace the photo placeholder with a photo or CAD render. -->
+          <article class="card">
+            <h3>Scoring mechanism</h3>
+            <p class="placeholder">[Scoring mechanism details coming soon.]</p>
+            <div class="photo-placeholder">Scoring mechanism photo or CAD render coming soon</div>
+          </article>
+
+          <!-- TODO: Autonomous: describe the autonomous routines, localization, and how Road Runner is used. Replace the placeholder with a path diagram or photo. -->
+          <article class="card">
+            <h3>Autonomous</h3>
+            <p class="placeholder">[Autonomous details coming soon.]</p>
+            <div class="photo-placeholder">Autonomous path diagram coming soon</div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER (same on every page) ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-name">The Bees Knees · FTC Team #13645</p>
+      <p>Baccalaureate School for Global Education (BSGE) · Astoria, Queens, New York</p>
+      <!-- TODO: Replace with the real Instagram link, e.g. <a href="https://www.instagram.com/yourhandle/">Instagram: @yourhandle</a> -->
+      <p class="placeholder">Instagram: [handle coming soon]</p>
+      <p class="copyright">© 2026 The Bees Knees, FTC Team #13645. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
