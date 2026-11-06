@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Team · The Bees Knees · FTC Team #13645</title>
   <meta name="description" content="Meet the captains, members, and mentors of The Bees Knees, FTC Team #13645 at BSGE.">
-  <meta name="theme-color" content="#1c1c1e">
+  <meta name="theme-color" content="#14110f">
   <link rel="stylesheet" href="css/style.css">
   <!-- This line tells the CSS that JavaScript is working, so the phone menu can start closed. -->
   <script>document.documentElement.classList.add("js");</script>
@@ -42,15 +42,16 @@
   <main id="main">
     <section class="page-header">
       <div class="container">
+        <p class="sheet-label" aria-hidden="true">Sheet 03 · Team</p>
         <h1>Our Team</h1>
         <p>The students and mentors behind The Bees Knees.</p>
       </div>
     </section>
 
-    <!-- ===== CAPTAINS ===== -->
+    <!-- ===== 01 / CAPTAINS ===== -->
     <section class="section" aria-labelledby="captains-title">
       <div class="container">
-        <h2 id="captains-title" class="section-title">Captains</h2>
+        <h2 id="captains-title" class="spec-title"><span class="spec-num" aria-hidden="true">01 /</span> Captains</h2>
         <div class="card-grid">
           <article class="card person-card">
             <div class="avatar avatar-large" aria-hidden="true">PC</div>
@@ -74,10 +75,10 @@
       </div>
     </section>
 
-    <!-- ===== MEMBERS ===== -->
-    <section class="section section-alt" aria-labelledby="members-title">
+    <!-- ===== 02 / MEMBERS ===== -->
+    <section class="section section-dark" aria-labelledby="members-title">
       <div class="container">
-        <h2 id="members-title" class="section-title">Members</h2>
+        <h2 id="members-title" class="spec-title"><span class="spec-num" aria-hidden="true">02 /</span> Members</h2>
 
         <!--
           HOW TO ADD A TEAM MEMBER
@@ -100,7 +101,7 @@
 
           ADDING A PHOTO LATER: replace the line <div class="avatar" ...>JD</div> with
             <img class="avatar" src="images/team/jordan-doe.jpg" alt="Jordan Doe">
-          (Use a square photo. The CSS will crop it into a circle.)
+          (Use a square photo. The CSS will crop it into a hexagon.)
         -->
 
         <div class="card-grid">
@@ -134,10 +135,10 @@
       </div>
     </section>
 
-    <!-- ===== COACHES & MENTORS ===== -->
+    <!-- ===== 03 / COACHES & MENTORS ===== -->
     <section class="section" aria-labelledby="mentors-title">
       <div class="container">
-        <h2 id="mentors-title" class="section-title">Coaches &amp; mentors</h2>
+        <h2 id="mentors-title" class="spec-title"><span class="spec-num" aria-hidden="true">03 /</span> Coaches &amp; mentors</h2>
         <div class="card-grid">
           <!-- TODO: Add the team's coach and any mentors (name + role, e.g. "Faculty Coach"). Copy this card for each person. -->
           <article class="card person-card">
@@ -155,11 +156,16 @@
   <!-- ===== FOOTER (same on every page) ===== -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-name">The Bees Knees · FTC Team #13645</p>
+      <p class="footer-name">The Bees Knees</p>
+      <p class="footer-number">FTC TEAM #13645</p>
       <p>Baccalaureate School for Global Education (BSGE) · Astoria, Queens, New York</p>
       <!-- TODO: Replace with the real Instagram link, e.g. <a href="https://www.instagram.com/yourhandle/">Instagram: @yourhandle</a> -->
       <p class="placeholder">Instagram: [handle coming soon]</p>
-      <p class="copyright">© 2026 The Bees Knees, FTC Team #13645. All rights reserved.</p>
+      <hr class="gear-divider">
+      <div class="footer-bottom">
+        <p>© 2026 The Bees Knees, FTC Team #13645</p>
+        <p>Built by The Bees Knees</p>
+      </div>
     </div>
   </footer>
 </body>

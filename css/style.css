@@ -1,67 +1,107 @@
 /* ==========================================================================
    The Bees Knees — FTC #13645
    Shared stylesheet used by EVERY page on the site.
+   Design concept: "Engineered Hive" (honeycomb = bee theme + engineering
+   structure), with a few technical-drawing details used sparingly.
 
    This file is organized top to bottom:
-     1.  Colors & settings (CSS variables)  <- change colors here
-     2.  Base styles (text, links, headings)
-     3.  Layout helpers (containers, sections, grids)
-     4.  Header & navigation (including the phone menu)
-     5.  Hero (home page) & page headers (other pages)
-     6.  Cards & buttons
-     7.  Team cards
-     8.  Build log
-     9.  Photo placeholders
-     10. Footer
-     11. Wider screens (tablet & desktop)
+     1.  Colors, fonts & settings (CSS variables)  <- change colors here
+     2.  Dark areas (how colors swap on dark backgrounds)
+     3.  Base styles (text, links, headings)
+     4.  Layout helpers (containers, sections, grids)
+     5.  Spec headings, dimension lines & gear dividers
+     6.  Header & navigation (including the phone menu)
+     7.  Hero (home page) & page headers (other pages)
+     8.  Cards & buttons
+     9.  Spec sheet table & fact lists
+     10. Team cards
+     11. Build log
+     12. Photo placeholders
+     13. Footer
+     14. Wider screens (tablet & desktop)
    ========================================================================== */
 
 
 /* ==========================================================================
-   1. COLORS & SETTINGS
-   A "CSS variable" is a named value. Instead of typing #f2a900 in 20 places,
-   we write var(--color-gold). Change it once here and the whole site updates.
+   1. COLORS, FONTS & SETTINGS
+   A "CSS variable" is a named value. Instead of typing #f2b705 in 20 places,
+   we write var(--honey). Change it once here and the whole site updates.
    ========================================================================== */
 
-/* TODO: These colors are temporary. Update them to the official team colors
-   once the team decides on them. Keep the contrast rule below in mind. */
+/* TODO: These colors may change to the official team colors once decided.
+   CONTRAST RULE: honey yellow is readable on black and espresso, but NEVER
+   use yellow TEXT on parchment. On light backgrounds, yellow is only for
+   shapes (borders, underlines, hexagons). */
 :root {
-  /* Dark colors (header, hero, footer) */
-  --color-charcoal: #1c1c1e;
-  --color-charcoal-light: #2c2c2f;
+  /* --- The 5 palette colors --- */
+  --hive-black: #14110f;   /* header, footer, hero */
+  --espresso: #3b2a1e;     /* dark section backgrounds */
+  --walnut: #7a5534;       /* borders, dividers, secondary text on light */
+  --honey: #f2b705;        /* buttons, highlights, team number (dark backgrounds only for text) */
+  --parchment: #f4ecdc;    /* main reading background */
 
-  /* Gold accents.
-     IMPORTANT: bright gold is hard to read on white. Use --color-gold only on
-     dark backgrounds or for decoration (borders, shapes). For text or links on
-     light backgrounds, use --color-gold-dark instead. */
-  --color-gold: #f2a900;
-  --color-gold-hover: #ffbe2e;
-  --color-gold-dark: #8a5a00;
+  /* --- Shades mixed from the palette, for subtle surfaces --- */
+  --parchment-light: #faf5ea;  /* cards on parchment */
+  --espresso-deep: #2a1e15;    /* cards on espresso */
+  --walnut-light: #b08a63;     /* lines on dark backgrounds */
+  --parchment-muted: #d6c7ad;  /* secondary text on dark backgrounds */
 
-  /* Light colors (page background, cards) */
-  --color-bg: #faf8f3;            /* warm off-white page background */
-  --color-surface: #ffffff;       /* cards */
-  --color-surface-muted: #f3f0e8; /* photo placeholders */
-  --color-border: #e4e0d6;
+  /* --- What each part of the page uses (these are the LIGHT-section values;
+         section 2 below swaps them for dark areas) --- */
+  --text: var(--hive-black);
+  --text-muted: var(--walnut);
+  --heading: var(--hive-black);
+  --surface: var(--parchment-light);       /* card background */
+  --border: rgba(122, 85, 52, 0.35);       /* walnut, see-through */
+  --line: var(--walnut);                   /* dimension lines, dividers */
+  --label: var(--walnut);                  /* "01 /" numbers, small labels */
+  --link: var(--espresso);
+  --placeholder-bg: #ebdfc8;
+  --focus: var(--espresso);                /* keyboard focus outline */
 
-  /* Text colors */
-  --color-text: #222222;
-  --color-text-muted: #5a5a5a;
-  --color-text-on-dark: #f5f5f5;
-  --color-text-on-dark-muted: #c8c8c8;
+  /* --- Fonts ---
+     Times New Roman for all reading text and headings.
+     Monospace ONLY for tiny technical labels (team number, dates, "01 /").
+     The monospace fonts below are already installed on most devices, so
+     nothing downloads. To use JetBrains Mono instead, add the Google Fonts
+     <link> to each page's <head> and put "JetBrains Mono" first in this list. */
+  --font-body: "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
 
-  /* Fonts: these are fonts already installed on every phone/computer,
-     so nothing has to download and pages load fast. */
-  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-
-  /* Sizes */
+  /* --- Sizes --- */
   --max-width: 1100px;  /* widest the content gets on big screens */
-  --radius: 8px;        /* how rounded corners are */
+  --radius: 4px;        /* small, crisp corners */
 }
 
 
 /* ==========================================================================
-   2. BASE STYLES
+   2. DARK AREAS
+   Everything listed here has a dark background. Instead of writing separate
+   styles for every element on dark backgrounds, we just swap the variables.
+   To make a new section dark, give it class="section section-dark".
+   ========================================================================== */
+
+.site-header,
+.hero,
+.page-header,
+.section-dark,
+.site-footer {
+  --text: var(--parchment);
+  --text-muted: var(--parchment-muted);
+  --heading: var(--parchment);
+  --surface: var(--espresso-deep);
+  --border: rgba(176, 138, 99, 0.45);
+  --line: var(--walnut-light);
+  --label: var(--honey);
+  --link: var(--honey);
+  --placeholder-bg: rgba(20, 17, 15, 0.35);
+  --focus: var(--honey);
+  color: var(--text);
+}
+
+
+/* ==========================================================================
+   3. BASE STYLES
    ========================================================================== */
 
 /* Makes width/height math include padding and borders (much easier to reason about). */
@@ -74,10 +114,10 @@
 body {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 1.0625rem; /* about 17px */
-  line-height: 1.65;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  font-size: 1.1875rem; /* about 19px: Times reads small, so the base size is a bit larger */
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--parchment);
 }
 
 img {
@@ -89,42 +129,62 @@ img {
 h1,
 h2,
 h3 {
-  line-height: 1.2;
   margin: 0 0 0.5em;
-  color: var(--color-charcoal);
-  letter-spacing: -0.01em;
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--heading);
 }
 
 /* clamp(smallest, preferred, largest) = text grows with the screen, within limits */
-h1 { font-size: clamp(2rem, 6vw, 3.25rem); }
-h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
-h3 { font-size: 1.2rem; }
+h1 { font-size: clamp(2.4rem, 7vw, 3.75rem); }
+h2 { font-size: clamp(1.8rem, 4.5vw, 2.5rem); }
+h3 { font-size: 1.35rem; }
 
 p {
   margin: 0 0 1em;
 }
 
+/* Links: underlined (so they are recognizable without relying on color). */
 a {
-  color: var(--color-gold-dark);
-  text-underline-offset: 0.15em;
+  color: var(--link);
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
-a:hover {
-  color: var(--color-charcoal);
+/* Links inside paragraphs, the nav, and the footer get a honey underline
+   that "draws in" from left to right on hover. */
+.prose a,
+.site-nav a,
+.site-footer a,
+.card p a {
+  background-image: linear-gradient(var(--honey), var(--honey));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.25s ease;
+}
+
+.prose a:hover,
+.site-nav a:hover,
+.site-footer a:hover,
+.card p a:hover {
+  background-size: 100% 2px;
+  text-decoration-color: transparent;
 }
 
 /* Visible outline when someone moves through the page with the Tab key. */
 :focus-visible {
-  outline: 3px solid var(--color-gold-dark);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 
-/* On dark areas, use the bright gold outline instead so it stays visible. */
-.site-header :focus-visible,
-.hero :focus-visible,
-.page-header :focus-visible,
-.site-footer :focus-visible {
-  outline-color: var(--color-gold);
+/* Small monospace text, for technical labels only. */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 /* "Skip to main content" link: hidden until a keyboard user presses Tab. */
@@ -134,8 +194,8 @@ a:hover {
   top: -100px;
   z-index: 100;
   padding: 0.5rem 1rem;
-  background: var(--color-gold);
-  color: var(--color-charcoal);
+  background: var(--honey);
+  color: var(--hive-black);
   font-weight: 700;
   border-radius: var(--radius);
 }
@@ -146,7 +206,7 @@ a:hover {
 
 /* Placeholder text (things we still need to fill in). Search the site for "TODO". */
 .placeholder {
-  color: var(--color-text-muted);
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -159,7 +219,7 @@ a:hover {
 
 
 /* ==========================================================================
-   3. LAYOUT HELPERS
+   4. LAYOUT HELPERS
    ========================================================================== */
 
 /* Centers content and keeps a 16px gap from the screen edges on phones. */
@@ -170,46 +230,28 @@ a:hover {
   padding: 0 1rem;
 }
 
+/* Sections alternate: parchment (default) and espresso (add "section-dark"). */
 .section {
-  padding: 3rem 0;
+  padding: 3.5rem 0;
 }
 
-/* Alternate background for every other section, to separate content visually. */
-.section-alt {
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-}
-
-/* Section headings get a small gold hexagon in front of them. */
-.section-title {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.section-title::before {
-  content: "";
-  flex-shrink: 0;
-  width: 0.75em;
-  height: 0.75em;
-  background: var(--color-gold);
-  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+.section-dark {
+  background: var(--espresso);
 }
 
 .section-intro {
   max-width: 65ch;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
   margin-bottom: 2rem;
 }
 
 /* Keeps long paragraphs at a comfortable reading width. */
 .prose {
-  max-width: 70ch;
+  max-width: 68ch;
 }
 
 .lead {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 /* A responsive grid: cards sit side by side when there is room,
@@ -225,38 +267,60 @@ a:hover {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
 }
 
-/* A simple two-part list of facts (label + value). */
-.fact-list {
-  margin: 0;
-  display: grid;
-  gap: 1rem;
+
+/* ==========================================================================
+   5. SPEC HEADINGS, DIMENSION LINES & GEAR DIVIDERS
+   ========================================================================== */
+
+/* Section heading with a spec number above it and a CAD-style dimension
+   line (a thin line with end ticks) below it. HTML:
+   <h2 class="spec-title"><span class="spec-num" aria-hidden="true">01 /</span> Heading</h2> */
+.spec-title {
+  margin-bottom: 2rem;
 }
 
-.fact-list dt {
+.spec-title::after {
+  content: "";
+  display: block;
+  height: 9px;
+  margin-top: 0.75rem;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  background: linear-gradient(var(--line), var(--line)) center / 100% 1px no-repeat;
+}
+
+.spec-num {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-mono);
   font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-gold-dark);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--label);
 }
 
-.fact-list dd {
-  margin: 0;
-  font-weight: 600;
+/* Horizontal divider with a small gear in the middle. HTML: <hr class="gear-divider"> */
+.gear-divider {
+  height: 24px;
+  margin: 2.5rem 0;
+  border: 0;
+  background:
+    url("../images/decor/gear.svg") center / 22px 22px no-repeat,
+    linear-gradient(var(--line), var(--line)) left center / calc(50% - 22px) 1px no-repeat,
+    linear-gradient(var(--line), var(--line)) right center / calc(50% - 22px) 1px no-repeat;
 }
 
 
 /* ==========================================================================
-   4. HEADER & NAVIGATION
+   6. HEADER & NAVIGATION
    ========================================================================== */
 
 .site-header {
   position: sticky;  /* header stays at the top while scrolling */
   top: 0;
   z-index: 50;
-  background: var(--color-charcoal);
-  color: var(--color-text-on-dark);
-  border-bottom: 3px solid var(--color-gold);
+  background: var(--hive-black);
+  border-bottom: 2px solid var(--honey);
 }
 
 .header-inner {
@@ -274,26 +338,21 @@ a:hover {
   flex-direction: column;
   line-height: 1.1;
   text-decoration: none;
-  color: var(--color-text-on-dark);
-}
-
-.wordmark:hover {
-  color: #ffffff;
+  color: var(--parchment);
 }
 
 .wordmark-name {
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .wordmark-number {
-  margin-top: 0.2rem;
-  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--honey);
 }
 
 /* --- Phone menu button ---
@@ -308,19 +367,20 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.5rem 0.85rem;
+  padding: 0.45rem 0.85rem;
   background: transparent;
-  color: var(--color-text-on-dark);
-  border: 1px solid #8a8a8a;
+  color: var(--parchment);
+  border: 1px solid var(--walnut-light);
   border-radius: var(--radius);
-  font: inherit;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
 .js .menu-toggle:hover {
-  border-color: var(--color-gold);
+  border-color: var(--honey);
 }
 
 /* The three-line "hamburger" icon, drawn with CSS. */
@@ -368,113 +428,127 @@ a:hover {
   padding: 0;
 }
 
+.site-nav li {
+  border-top: 1px solid rgba(176, 138, 99, 0.3);
+}
+
 .site-nav a {
-  display: block;
-  padding: 0.75rem 0.25rem;
-  border-top: 1px solid #3a3a3d;
-  color: var(--color-text-on-dark);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.site-nav a:hover,
-.site-nav a[aria-current="page"] {
-  color: var(--color-gold);
-}
-
-
-/* ==========================================================================
-   5. HERO (home page) & PAGE HEADERS (all other pages)
-   ========================================================================== */
-
-/* Dark band with a very faint honeycomb pattern.
-   The pattern is a tiny drawing (SVG) written directly into the CSS, so there
-   is no image file to load. To make it stronger or weaker, change both
-   stroke-opacity='0.07' values (0 = invisible, 1 = solid). */
-.hero,
-.page-header {
-  background-color: var(--color-charcoal);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23f2a900' stroke-opacity='0.07'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23f2a900' stroke-opacity='0.07'/%3E%3C/svg%3E");
-  color: var(--color-text-on-dark);
-}
-
-.hero {
-  padding: 4rem 0 4.5rem;
-}
-
-.hero h1,
-.page-header h1 {
-  color: #ffffff;
-}
-
-.hero h1 {
-  margin-bottom: 0.25rem;
-}
-
-.hero-season {
   display: inline-block;
-  margin-bottom: 1.25rem;
-  padding: 0.25rem 0.75rem;
-  border: 1px solid var(--color-gold);
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-}
-
-.hero-number {
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-}
-
-.hero-school {
-  color: var(--color-text-on-dark-muted);
-}
-
-.hero-tagline {
-  max-width: 34ch;
-  margin: 1.75rem 0 2rem;
-  padding-left: 1rem;
-  border-left: 3px solid var(--color-gold);
-  font-size: clamp(1.15rem, 3vw, 1.5rem);
-  font-weight: 500;
-  color: #ffffff;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-/* Smaller dark band at the top of every page except Home. */
-.page-header {
-  padding: 2.75rem 0;
-}
-
-.page-header p {
-  max-width: 60ch;
-  margin-bottom: 0;
-  color: var(--color-text-on-dark-muted);
+  margin: 0.65rem 0.25rem;
+  color: var(--parchment);
+  text-decoration: none;
   font-size: 1.1rem;
 }
 
+.site-nav a:hover {
+  color: var(--honey);
+}
+
+/* The page you're on: honey text with the underline already drawn. */
+.site-nav a[aria-current="page"] {
+  color: var(--honey);
+  background-size: 100% 2px;
+}
+
 
 /* ==========================================================================
-   6. CARDS & BUTTONS
+   7. HERO (home page) & PAGE HEADERS (all other pages)
+   ========================================================================== */
+
+/* Black band with the faint honeycomb texture (images/decor/honeycomb.svg). */
+.hero,
+.page-header {
+  position: relative;
+  background: var(--hive-black) url("../images/decor/honeycomb.svg");
+}
+
+.hero {
+  padding: 4.5rem 0 5rem;
+}
+
+.hero h1 {
+  margin-bottom: 0.6rem;
+  font-size: clamp(2.75rem, 10vw, 5.25rem);
+  line-height: 1.02;
+}
+
+.hero-season {
+  margin-bottom: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--parchment-muted);
+}
+
+.hero-meta {
+  margin-bottom: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--honey);
+}
+
+.hero-tagline {
+  max-width: 32ch;
+  margin-bottom: 2.25rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--honey);
+  font-size: clamp(1.3rem, 3.2vw, 1.7rem);
+  font-style: italic;
+  color: var(--parchment);
+}
+
+/* Tiny "coordinate readout" labels in the hero corners (decoration only;
+   hidden on phones so they don't clutter small screens). */
+.coord {
+  display: none;
+  position: absolute;
+  right: max(1rem, calc((100% - var(--max-width)) / 2 + 1rem));
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--walnut-light);
+}
+
+.coord-top    { top: 1.25rem; }
+.coord-bottom { bottom: 1.25rem; }
+
+/* Smaller black band at the top of every page except Home. */
+.page-header {
+  padding: 3rem 0;
+}
+
+.sheet-label {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--honey);
+}
+
+.page-header p:last-child {
+  max-width: 60ch;
+  margin-bottom: 0;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+
+/* ==========================================================================
+   8. CARDS & BUTTONS
    ========================================================================== */
 
 .card {
   padding: 1.5rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-gold);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--honey);
   border-radius: var(--radius);
 }
 
@@ -489,145 +563,215 @@ a:hover {
 /* A whole card that works as one link (used on the Home page). */
 .link-card {
   display: block;
-  color: inherit;
+  color: var(--text);
   text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .link-card:hover {
-  color: inherit;
+  border-color: var(--honey);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .card-cta {
-  font-weight: 700;
-  color: var(--color-gold-dark);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--label);
 }
 
-/* Small uppercase label above a card heading. */
+/* Small monospace label above a card heading, e.g. "SPEC 01" or "CAD". */
 .label {
   display: inline-block;
-  margin-bottom: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-gold-dark);
+  color: var(--label);
 }
 
+/* Button (for dark backgrounds): honey outline that fills with honey from
+   left to right on hover, like a progress bar. */
 .button {
   display: inline-block;
-  padding: 0.75rem 1.25rem;
-  background: var(--color-gold);
-  color: var(--color-charcoal);
-  border: 2px solid var(--color-gold);
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--honey);
   border-radius: var(--radius);
+  color: var(--honey);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
   font-weight: 700;
   text-decoration: none;
+  background-image: linear-gradient(var(--honey), var(--honey));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+  transition: background-size 0.35s ease, color 0.35s ease;
 }
 
-.button:hover {
-  background: var(--color-gold-hover);
-  border-color: var(--color-gold-hover);
-  color: var(--color-charcoal);
-}
-
-/* Outline version: only use on dark backgrounds. */
-.button-outline {
-  background: transparent;
-  color: #ffffff;
-}
-
-.button-outline:hover {
-  background: var(--color-gold);
-  color: var(--color-charcoal);
+.button:hover,
+.button:focus-visible {
+  background-size: 100% 100%;
+  color: var(--hive-black);
 }
 
 
 /* ==========================================================================
-   7. TEAM CARDS
+   9. SPEC SHEET TABLE & FACT LISTS
+   ========================================================================== */
+
+/* Lets a wide table scroll sideways on very small phones instead of breaking the page. */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.spec-sheet {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--honey);
+  font-size: 1.05rem;
+}
+
+.spec-sheet caption {
+  padding-bottom: 0.75rem;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+
+.spec-sheet th,
+.spec-sheet td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.spec-sheet thead th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.spec-code {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--label);
+}
+
+/* A simple list of facts: label + value (used on the About page). */
+.fact-list {
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.fact-list dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+
+.fact-list dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   10. TEAM CARDS
    ========================================================================== */
 
 .person-card {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
-/* Circle with initials. Later this can be swapped for a photo
-   (an <img> with class="avatar" gets the same round shape). */
+/* Hexagon with initials. Later this can be swapped for a photo
+   (an <img> with class="avatar" gets the same hexagon shape). */
 .avatar {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 2px solid var(--color-gold);
-  background: var(--color-charcoal);
-  color: var(--color-gold);
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  height: 72px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: var(--honey);
+  color: var(--hive-black);
+  font-size: 1.4rem;
+  font-weight: 700;
   object-fit: cover; /* used when the avatar is a photo */
 }
 
 .avatar-large {
-  width: 84px;
-  height: 84px;
-  font-size: 1.6rem;
+  width: 80px;
+  height: 90px;
+  font-size: 1.75rem;
 }
 
-/* Dashed circle for placeholder cards that still need a real member. */
+/* Muted hexagon for placeholder cards that still need a real member. */
 .avatar-placeholder {
-  background: var(--color-surface-muted);
-  border-style: dashed;
-  border-color: #a39b88;
-  color: var(--color-text-muted);
+  background: var(--walnut);
+  color: var(--parchment);
 }
 
 .person-name {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
 }
 
 .person-role {
   margin: 0;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
 }
 
 
 /* ==========================================================================
-   8. BUILD LOG
+   11. BUILD LOG
    ========================================================================== */
 
 .log {
   display: grid;
   gap: 1.5rem;
-  max-width: 760px;
+  max-width: 780px;
 }
 
 .log-entry {
   padding: 1.5rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-gold);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--honey);
   border-radius: var(--radius);
 }
 
 .log-date {
-  margin-bottom: 0.25rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-gold-dark);
-}
-
-.log-entry h2 {
-  font-size: 1.35rem;
+  color: var(--label);
 }
 
 .log-entry p:last-child {
@@ -644,15 +788,16 @@ a:hover {
 
 figcaption {
   margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
 
 /* ==========================================================================
-   9. PHOTO PLACEHOLDERS
-   Dashed boxes showing where a photo will go. When you have the photo,
-   replace the whole <div class="photo-placeholder">...</div> with an <img>.
+   12. PHOTO PLACEHOLDERS
+   Dashed boxes showing where a photo will go, labeled like a figure on a
+   technical drawing. When you have the photo, replace the whole
+   <div class="photo-placeholder">...</div> with an <img>.
    ========================================================================== */
 
 .photo-placeholder {
@@ -662,58 +807,66 @@ figcaption {
   aspect-ratio: 16 / 9;  /* keeps a widescreen shape at any width */
   margin-top: 1.25rem;
   padding: 1rem;
-  background: var(--color-surface-muted);
-  border: 2px dashed #b9b2a2;
+  background: var(--placeholder-bg);
+  border: 1.5px dashed var(--line);
   border-radius: var(--radius);
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-align: center;
 }
 
 
 /* ==========================================================================
-   10. FOOTER
+   13. FOOTER
    ========================================================================== */
 
 .site-footer {
-  padding: 2.5rem 0 2rem;
-  background: var(--color-charcoal);
-  border-top: 3px solid var(--color-gold);
-  color: var(--color-text-on-dark-muted);
-  font-size: 0.95rem;
+  padding: 3rem 0 2rem;
+  background: var(--hive-black) url("../images/decor/honeycomb.svg");
+  border-top: 2px solid var(--honey);
+  color: var(--text-muted);
+  font-size: 1.05rem;
 }
 
 .site-footer p {
-  margin-bottom: 0.4rem;
-}
-
-.site-footer a {
-  color: var(--color-gold);
-}
-
-.site-footer a:hover {
-  color: #ffffff;
-}
-
-.site-footer .placeholder {
-  color: var(--color-text-on-dark-muted);
+  margin-bottom: 0.35rem;
 }
 
 .footer-name {
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--parchment);
 }
 
-.copyright {
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid #3a3a3d;
-  font-size: 0.85rem;
+.footer-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--honey);
+}
+
+.site-footer .gear-divider {
+  margin: 2rem 0 1.25rem;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 
 /* ==========================================================================
-   11. WIDER SCREENS (tablet & desktop, 768px and up)
+   14. WIDER SCREENS (tablet & desktop, 768px and up)
    Everything above is designed for phones first. These rules adjust the
    layout once the screen is wide enough.
    ========================================================================== */
@@ -732,30 +885,33 @@ figcaption {
 
   .site-nav ul {
     display: flex;
-    gap: 0.25rem;
+    gap: 1.4rem;
     margin: 0;
   }
 
-  .site-nav a {
-    padding: 0.5rem 0.7rem;
+  .site-nav li {
     border-top: 0;
-    border-bottom: 2px solid transparent;
   }
 
-  .site-nav a[aria-current="page"] {
-    border-bottom-color: var(--color-gold);
+  .site-nav a {
+    margin: 0;
+    padding: 0.2rem 0;
+  }
+
+  .coord {
+    display: block;
   }
 
   .hero {
-    padding: 6rem 0 6.5rem;
+    padding: 6.5rem 0 7rem;
   }
 
   .page-header {
-    padding: 4rem 0;
+    padding: 4.5rem 0;
   }
 
   .section {
-    padding: 4.5rem 0;
+    padding: 5rem 0;
   }
 
   /* Two columns: main text on the left, facts box on the right. */

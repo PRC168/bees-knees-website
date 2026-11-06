@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Robot · The Bees Knees · FTC Team #13645</title>
-  <meta name="description" content="The Bees Knees' 2026–27 season strategy, engineering tools, and robot subsystems.">
-  <meta name="theme-color" content="#1c1c1e">
+  <meta name="description" content="The Bees Knees' 2026–27 season strategy, robot spec sheet, engineering tools, and subsystems.">
+  <meta name="theme-color" content="#14110f">
   <link rel="stylesheet" href="css/style.css">
   <!-- This line tells the CSS that JavaScript is working, so the phone menu can start closed. -->
   <script>document.documentElement.classList.add("js");</script>
@@ -42,16 +42,17 @@
   <main id="main">
     <section class="page-header">
       <div class="container">
+        <p class="sheet-label" aria-hidden="true">Sheet 04 · Robot</p>
         <h1>Robot &amp; Engineering</h1>
         <!-- TODO: Verify the official spelling of the season name. -->
         <p>Our strategy and engineering approach for the 2026–27 <em>FIRST</em> Tech Challenge season, BIOBUZZ.</p>
       </div>
     </section>
 
-    <!-- ===== SEASON STRATEGY ===== -->
+    <!-- ===== 01 / SEASON STRATEGY ===== -->
     <section class="section" aria-labelledby="strategy-title">
       <div class="container">
-        <h2 id="strategy-title" class="section-title">Season strategy</h2>
+        <h2 id="strategy-title" class="spec-title"><span class="spec-num" aria-hidden="true">01 /</span> Season strategy</h2>
         <!-- TODO: Confirm "hive" is the official game-manual term for the scoring area and update the wording if needed. -->
         <div class="prose">
           <p class="lead">Our design is built around the intake.</p>
@@ -61,10 +62,67 @@
       </div>
     </section>
 
-    <!-- ===== TOOLS ===== -->
-    <section class="section section-alt" aria-labelledby="tools-title">
+    <!-- ===== 02 / SPEC SHEET ===== -->
+    <section class="section section-dark" aria-labelledby="specs-title">
       <div class="container">
-        <h2 id="tools-title" class="section-title">Engineering tools</h2>
+        <h2 id="specs-title" class="spec-title"><span class="spec-num" aria-hidden="true">02 /</span> Spec sheet</h2>
+        <p class="section-intro">A summary of the robot. Rows marked "To be determined" will be filled in as designs are finalized.</p>
+
+        <!-- HOW TO EDIT: each <tr> is one row. Change the text in the <td> to fill in a spec,
+             and remove class="placeholder" once it is real. -->
+        <div class="table-wrap">
+          <table class="spec-sheet">
+            <!-- TODO: Add the robot's name to the caption once the team chooses one. -->
+            <caption>BIOBUZZ robot · 2026–27 · Rev A</caption>
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Specification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="spec-code">Spec 01</span> Robot name</th>
+                <!-- TODO: Robot name -->
+                <td class="placeholder">To be determined</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="spec-code">Spec 02</span> Drivetrain</th>
+                <!-- TODO: Drivetrain type -->
+                <td class="placeholder">To be determined</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="spec-code">Spec 03</span> Intake</th>
+                <!-- TODO: Intake design summary -->
+                <td class="placeholder">In development (primary design focus)</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="spec-code">Spec 04</span> Scoring mechanism</th>
+                <!-- TODO: Scoring mechanism summary -->
+                <td class="placeholder">To be determined</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="spec-code">Spec 05</span> Programming</th>
+                <td>Java · FTC SDK</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="spec-code">Spec 06</span> Motion planning</th>
+                <td>Road Runner</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="spec-code">Spec 07</span> CAD</th>
+                <td>Onshape</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 / ENGINEERING TOOLS ===== -->
+    <section class="section" aria-labelledby="tools-title">
+      <div class="container">
+        <h2 id="tools-title" class="spec-title"><span class="spec-num" aria-hidden="true">03 /</span> Engineering tools</h2>
         <p class="section-intro">The software we use to design, program, and control our robot.</p>
         <div class="card-grid">
           <div class="card">
@@ -86,39 +144,43 @@
       </div>
     </section>
 
-    <!-- ===== SUBSYSTEMS ===== -->
-    <section class="section" aria-labelledby="subsystems-title">
+    <!-- ===== 04 / SUBSYSTEMS ===== -->
+    <section class="section section-dark" aria-labelledby="subsystems-title">
       <div class="container">
-        <h2 id="subsystems-title" class="section-title">Robot subsystems</h2>
+        <h2 id="subsystems-title" class="spec-title"><span class="spec-num" aria-hidden="true">04 /</span> Robot subsystems</h2>
         <p class="section-intro">Detailed write-ups for each subsystem will be added as our designs are finalized.</p>
 
         <div class="card-grid card-grid-wide">
           <!-- TODO: Drivetrain: describe the design, why we chose it, and what we tested. Replace the photo placeholder with a photo or CAD render. -->
           <article class="card">
+            <span class="label">Subsystem A</span>
             <h3>Drivetrain</h3>
             <p class="placeholder">[Drivetrain details coming soon.]</p>
-            <div class="photo-placeholder">Drivetrain photo or CAD render coming soon</div>
+            <div class="photo-placeholder">Fig. A · Drivetrain photo or CAD render coming soon</div>
           </article>
 
           <!-- TODO: Intake: describe the design, iterations, and test results. Replace the photo placeholder with a photo or CAD render. -->
           <article class="card">
+            <span class="label">Subsystem B</span>
             <h3>Intake</h3>
             <p class="placeholder">[Intake details coming soon.]</p>
-            <div class="photo-placeholder">Intake photo or CAD render coming soon</div>
+            <div class="photo-placeholder">Fig. B · Intake photo or CAD render coming soon</div>
           </article>
 
           <!-- TODO: Scoring mechanism: describe how the robot scores and why. Replace the photo placeholder with a photo or CAD render. -->
           <article class="card">
+            <span class="label">Subsystem C</span>
             <h3>Scoring mechanism</h3>
             <p class="placeholder">[Scoring mechanism details coming soon.]</p>
-            <div class="photo-placeholder">Scoring mechanism photo or CAD render coming soon</div>
+            <div class="photo-placeholder">Fig. C · Scoring mechanism photo or CAD render coming soon</div>
           </article>
 
           <!-- TODO: Autonomous: describe the autonomous routines, localization, and how Road Runner is used. Replace the placeholder with a path diagram or photo. -->
           <article class="card">
+            <span class="label">Subsystem D</span>
             <h3>Autonomous</h3>
             <p class="placeholder">[Autonomous details coming soon.]</p>
-            <div class="photo-placeholder">Autonomous path diagram coming soon</div>
+            <div class="photo-placeholder">Fig. D · Autonomous path diagram coming soon</div>
           </article>
         </div>
       </div>
@@ -128,11 +190,16 @@
   <!-- ===== FOOTER (same on every page) ===== -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-name">The Bees Knees · FTC Team #13645</p>
+      <p class="footer-name">The Bees Knees</p>
+      <p class="footer-number">FTC TEAM #13645</p>
       <p>Baccalaureate School for Global Education (BSGE) · Astoria, Queens, New York</p>
       <!-- TODO: Replace with the real Instagram link, e.g. <a href="https://www.instagram.com/yourhandle/">Instagram: @yourhandle</a> -->
       <p class="placeholder">Instagram: [handle coming soon]</p>
-      <p class="copyright">© 2026 The Bees Knees, FTC Team #13645. All rights reserved.</p>
+      <hr class="gear-divider">
+      <div class="footer-bottom">
+        <p>© 2026 The Bees Knees, FTC Team #13645</p>
+        <p>Built by The Bees Knees</p>
+      </div>
     </div>
   </footer>
 </body>

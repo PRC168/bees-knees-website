@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Bees Knees · FTC Team #13645</title>
   <meta name="description" content="The Bees Knees, FTC Team #13645, is a FIRST Tech Challenge robotics team at the Baccalaureate School for Global Education (BSGE) in Astoria, Queens, New York.">
-  <meta name="theme-color" content="#1c1c1e">
+  <meta name="theme-color" content="#14110f">
   <link rel="stylesheet" href="css/style.css">
   <!-- This line tells the CSS that JavaScript is working, so the phone menu can start closed. -->
   <script>document.documentElement.classList.add("js");</script>
@@ -42,12 +42,15 @@
   <main id="main">
     <!-- ===== HERO ===== -->
     <section class="hero" aria-labelledby="hero-title">
+      <!-- Decorative "coordinate readout" labels (hidden on phones and from screen readers). -->
+      <p class="coord coord-top" aria-hidden="true">X: 0.00&nbsp;&nbsp;Y: 0.00</p>
+      <p class="coord coord-bottom" aria-hidden="true">Rev A · Sheet 01</p>
+
       <div class="container">
         <!-- TODO: Verify the official spelling/capitalization of the 2026–27 season name ("BIOBUZZ"). It also appears on robot.html and about.html. -->
         <p class="hero-season">2026–27 Season · BIOBUZZ</p>
         <h1 id="hero-title">The Bees Knees</h1>
-        <p class="hero-number">FTC Team #13645</p>
-        <p class="hero-school">Baccalaureate School for Global Education (BSGE) · Astoria, Queens, New York</p>
+        <p class="hero-meta">FTC #13645 · BSGE · Astoria, Queens</p>
 
         <!-- TODO: Team to choose a final tagline. Options:
              1. "Building a robotics program from the ground up, one iteration at a time."  (currently used)
@@ -56,40 +59,47 @@
         -->
         <p class="hero-tagline">Building a robotics program from the ground up, one iteration at a time.</p>
 
-        <div class="hero-actions">
-          <a class="button" href="robot.html">Our robot &amp; strategy</a>
-          <a class="button button-outline" href="buildlog.html">Read the build log</a>
-        </div>
+        <a class="button" href="robot.html">See our robot &amp; strategy</a>
       </div>
     </section>
 
-    <!-- ===== INTRO ===== -->
-    <section class="section" aria-labelledby="intro-title">
+    <!-- ===== 01 / WELCOME ===== -->
+    <section class="section" aria-labelledby="welcome-title">
       <div class="container">
-        <h2 id="intro-title" class="section-title">Welcome</h2>
+        <h2 id="welcome-title" class="spec-title"><span class="spec-num" aria-hidden="true">01 /</span> Welcome</h2>
         <div class="prose">
-          <p class="lead">The Bees Knees is a <em>FIRST</em> Tech Challenge team from the Baccalaureate School for Global Education in Astoria, Queens. After six years away from competition, we are back for the 2026–27 season: designing, building, and programming a competitive robot while laying the foundation for a program that lasts.</p>
+          <p class="lead">The Bees Knees is a <em>FIRST</em> Tech Challenge team from the Baccalaureate School for Global Education (BSGE) in Astoria, Queens, New York. After six years away from competition, we are back for the 2026–27 season: designing, building, and programming a competitive robot while laying the foundation for a program that lasts.</p>
+          <p>Follow our progress in the <a href="buildlog.html">build log</a>, or read <a href="about.html">who we are</a>.</p>
         </div>
 
         <!-- TODO: Optional team photo. When you have one, add it here, for example:
              <img src="images/team-photo.jpg" alt="The Bees Knees team with our robot at BSGE">
         -->
+      </div>
+    </section>
 
-        <div class="card-grid" style="margin-top: 2rem;">
+    <!-- ===== 02 / EXPLORE ===== -->
+    <section class="section section-dark" aria-labelledby="explore-title">
+      <div class="container">
+        <h2 id="explore-title" class="spec-title"><span class="spec-num" aria-hidden="true">02 /</span> Explore</h2>
+        <div class="card-grid">
           <a class="card link-card" href="about.html">
-            <h3>About us</h3>
-            <p>Who we are, where the team comes from, and the values that guide our work.</p>
-            <p class="card-cta">Learn about the team →</p>
+            <span class="label">About</span>
+            <h3>Who we are</h3>
+            <p>Where the team comes from, and the values that guide our work.</p>
+            <p class="card-cta">Learn more →</p>
           </a>
           <a class="card link-card" href="robot.html">
-            <h3>Our robot</h3>
-            <p>Our season strategy, the engineering tools we use, and the robot's subsystems.</p>
+            <span class="label">Robot</span>
+            <h3>Strategy &amp; engineering</h3>
+            <p>Our season strategy, spec sheet, engineering tools, and subsystems.</p>
             <p class="card-cta">See the engineering →</p>
           </a>
           <a class="card link-card" href="buildlog.html">
-            <h3>Build log</h3>
-            <p>Our dated engineering journal: what we designed, tested, and learned along the way.</p>
-            <p class="card-cta">Read the build log →</p>
+            <span class="label">Build log</span>
+            <h3>Engineering journal</h3>
+            <p>Dated entries on what we designed, tested, and learned along the way.</p>
+            <p class="card-cta">Read the log →</p>
           </a>
         </div>
       </div>
@@ -99,11 +109,16 @@
   <!-- ===== FOOTER (same on every page) ===== -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-name">The Bees Knees · FTC Team #13645</p>
+      <p class="footer-name">The Bees Knees</p>
+      <p class="footer-number">FTC TEAM #13645</p>
       <p>Baccalaureate School for Global Education (BSGE) · Astoria, Queens, New York</p>
       <!-- TODO: Replace with the real Instagram link, e.g. <a href="https://www.instagram.com/yourhandle/">Instagram: @yourhandle</a> -->
       <p class="placeholder">Instagram: [handle coming soon]</p>
-      <p class="copyright">© 2026 The Bees Knees, FTC Team #13645. All rights reserved.</p>
+      <hr class="gear-divider">
+      <div class="footer-bottom">
+        <p>© 2026 The Bees Knees, FTC Team #13645</p>
+        <p>Built by The Bees Knees</p>
+      </div>
     </div>
   </footer>
 </body>

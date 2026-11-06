@@ -16,7 +16,7 @@ It is built with plain **HTML** (the content), **CSS** (the look), and a tiny bi
 6. [How to add a team member](#6-how-to-add-a-team-member)
 7. [How to add photos](#7-how-to-add-photos)
 8. [Changing the menu, header, or footer](#8-changing-the-menu-header-or-footer)
-9. [Changing colors](#9-changing-colors)
+9. [Changing colors and fonts](#9-changing-colors-and-fonts)
 10. [Publishing changes (GitHub Pages)](#10-publishing-changes-github-pages)
 11. [Rules of thumb](#11-rules-of-thumb)
 
@@ -37,6 +37,7 @@ bees-knees-website/
 ├── js/
 │   └── main.js     Opens/closes the "Menu" button on phones
 ├── images/         Photos go here (see images/README.txt)
+│   └── decor/      Design graphics: honeycomb.svg (background texture), gear.svg (divider)
 └── README.md       This guide
 ```
 
@@ -147,7 +148,7 @@ The coaches/mentors section works the same way.
 **Where photos go:**
 - **Robot page:** replace a whole `<div class="photo-placeholder">...</div>` with your `<img>`.
 - **Home and About pages:** there are commented-out spots marked `TODO: Optional ... photo`.
-- **Team page:** replace the `<div class="avatar" ...>XX</div>` line with `<img class="avatar" src="images/team/name.jpg" alt="Full Name">`. Square photos work best, and the CSS crops them into a circle.
+- **Team page:** replace the `<div class="avatar" ...>XX</div>` line with `<img class="avatar" src="images/team/name.jpg" alt="Full Name">`. Square photos work best, and the CSS crops them into a hexagon.
 
 ## 8. Changing the menu, header, or footer
 
@@ -157,11 +158,38 @@ The safe way in VS Code: `Ctrl+Shift+H` (Mac: `Cmd+Shift+H`) opens **Replace in 
 
 **Adding a new page:** copy an existing page (e.g., `contact.html`), rename it, change its `<title>`, description, and content, then add a link to it in the nav of **all** pages. Move `aria-current="page"` to the new link on the new page only. That attribute marks which page you are on.
 
-## 9. Changing colors
+## 9. Changing colors and fonts
 
-All colors are at the top of `css/style.css` under **1. COLORS & SETTINGS**. Change a value there and it updates everywhere.
+The design concept is **"Engineered Hive"**: honeycomb (bee theme + a classic strong engineering structure) with a few technical-drawing details.
 
-⚠️ **Contrast rule:** bright gold (`--color-gold`) is hard to read on white. It is only used on dark backgrounds or for decoration. For text and links on light backgrounds, use `--color-gold-dark`. If you change colors, check them with a contrast checker such as [WebAIM's](https://webaim.org/resources/contrastchecker/). Normal text needs a ratio of at least **4.5:1**.
+### Colors
+All colors are at the top of `css/style.css` under **1. COLORS, FONTS & SETTINGS**:
+
+| Name | Hex | Used for |
+|---|---|---|
+| Hive black | `#14110F` | Header, footer, hero |
+| Espresso | `#3B2A1E` | Dark sections, card backgrounds on dark |
+| Walnut | `#7A5534` | Borders, dividers, secondary text on light |
+| Honey yellow | `#F2B705` | Buttons, highlights, team number |
+| Parchment | `#F4ECDC` | Main reading background |
+
+⚠️ **Contrast rule:** honey yellow is readable on black and espresso, but **never use yellow text on parchment** (ratio 1.55:1; the minimum for readable text is 4.5:1). On light backgrounds, yellow is only for shapes like borders, underlines, and hexagons. Check any new color pair with [WebAIM's contrast checker](https://webaim.org/resources/contrastchecker/).
+
+**Light vs. dark sections:** sections alternate between parchment and espresso. To make a section dark, give it `class="section section-dark"`. The CSS automatically swaps text, link, and card colors inside it (section **2. DARK AREAS** in `style.css`), so you don't need to restyle anything.
+
+### Fonts
+- **Times New Roman** for all headings and reading text. (Android phones don't include Times New Roman, so they show their own built-in serif font instead. That's expected.)
+- **Monospace** only for tiny technical labels: the team number, dates, `01 /` section numbers, `SPEC 01`. Keep it that way, because the contrast between the two fonts is what makes the technical details look deliberate.
+
+### Design details (and how to use them)
+- **Numbered section headings** with a CAD-style dimension line underneath:
+  ```html
+  <h2 id="my-title" class="spec-title"><span class="spec-num" aria-hidden="true">03 /</span> My heading</h2>
+  ```
+  Numbers count up within each page (01, 02, 03…). If you add or remove a section, renumber the ones after it.
+- **Sheet labels** at the top of each page (`Sheet 02 · About`) are like page numbers on an engineering drawing. Give a new page the next number.
+- **Gear divider:** `<hr class="gear-divider">` draws a line with a small gear in the middle. Use it sparingly.
+- **Honeycomb texture:** `images/decor/honeycomb.svg`. To make it fainter or stronger, edit the `opacity` numbers inside that file.
 
 ## 10. Publishing changes (GitHub Pages)
 

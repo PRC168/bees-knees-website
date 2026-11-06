@@ -1,5 +1,8 @@
 PHOTOS GO IN THIS FOLDER
 
+(The decor/ folder holds the site's design graphics: the honeycomb texture and the gear.
+ Don't delete it.)
+
 Suggested subfolders (create them when you need them):
   images/team/       team member photos (square, e.g. 400x400 pixels)
   images/buildlog/   build log photos

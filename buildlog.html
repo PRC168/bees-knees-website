@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Build Log · The Bees Knees · FTC Team #13645</title>
   <meta name="description" content="The Bees Knees' engineering journal: dated entries on what we designed, built, tested, and learned.">
-  <meta name="theme-color" content="#1c1c1e">
+  <meta name="theme-color" content="#14110f">
   <link rel="stylesheet" href="css/style.css">
   <!-- This line tells the CSS that JavaScript is working, so the phone menu can start closed. -->
   <script>document.documentElement.classList.add("js");</script>
@@ -42,13 +42,16 @@
   <main id="main">
     <section class="page-header">
       <div class="container">
+        <p class="sheet-label" aria-hidden="true">Sheet 05 · Build Log</p>
         <h1>Build Log</h1>
         <p>Our engineering journal: what we designed, built, tested, and learned. Newest entries first.</p>
       </div>
     </section>
 
-    <section class="section" aria-label="Build log entries">
+    <!-- ===== 01 / ENGINEERING JOURNAL ===== -->
+    <section class="section" aria-labelledby="journal-title">
       <div class="container">
+        <h2 id="journal-title" class="spec-title"><span class="spec-num" aria-hidden="true">01 /</span> Engineering journal</h2>
 
         <!--
           ================= BUILD LOG ENTRY TEMPLATE =================
@@ -66,7 +69,7 @@
 
           <article class="log-entry">
             <p class="log-date"><time datetime="2026-11-06">November 6, 2026</time></p>
-            <h2>Entry title goes here</h2>
+            <h3>Entry title goes here</h3>
             <p>What did we work on? What did we test, and what were the results? What did we learn, and what is the next step?</p>
             <figure>
               <img src="images/buildlog/your-photo-name.jpg" alt="Describe the photo, e.g. Second intake prototype mounted on the test chassis">
@@ -82,7 +85,7 @@
           <!-- TODO: This is an EXAMPLE entry. Replace it with a real entry, or delete it once you have real entries. -->
           <article class="log-entry">
             <p class="log-date"><time datetime="2026-09-15">September 15, 2026</time></p>
-            <h2>[Example entry] Reviewing the game manual</h2>
+            <h3>[Example entry] Reviewing the game manual</h3>
             <p class="placeholder">This is an example entry showing how the build log looks. Replace it with a real entry describing what the team worked on, what was tested, what was learned, and the next step.</p>
           </article>
 
@@ -94,11 +97,16 @@
   <!-- ===== FOOTER (same on every page) ===== -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-name">The Bees Knees · FTC Team #13645</p>
+      <p class="footer-name">The Bees Knees</p>
+      <p class="footer-number">FTC TEAM #13645</p>
       <p>Baccalaureate School for Global Education (BSGE) · Astoria, Queens, New York</p>
       <!-- TODO: Replace with the real Instagram link, e.g. <a href="https://www.instagram.com/yourhandle/">Instagram: @yourhandle</a> -->
       <p class="placeholder">Instagram: [handle coming soon]</p>
-      <p class="copyright">© 2026 The Bees Knees, FTC Team #13645. All rights reserved.</p>
+      <hr class="gear-divider">
+      <div class="footer-bottom">
+        <p>© 2026 The Bees Knees, FTC Team #13645</p>
+        <p>Built by The Bees Knees</p>
+      </div>
     </div>
   </footer>
 </body>
